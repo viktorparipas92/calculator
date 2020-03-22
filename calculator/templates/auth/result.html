@@ -1,0 +1,7 @@
+{% extends 'auth/calculate.html' %}
+{% block result %}
+    <div>
+        {{ formula }}({{ inputs|join(', ')}}) = {{ result }}<br>
+        Calculation took {{ ('%6.5f' % calc_time) }} seconds.
+    </div>
+{% endblock %}

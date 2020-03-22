@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %} Main page {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+
+        <p>Select formula:</p>
+        <input type="radio" id="fibo" name="formula" value="fibo" onclick="hide('num2-div')" required>
+        <label for="fibo">Fibonacci</label><br>
+        <input type="radio" id="fact" name="formula" value="fact" onclick="hide('num2-div')" required>
+        <label for="fact">factorial</label><br>
+        <input type="radio" id="ack" name="formula" value="ack" onclick="unhide('num2-div')" required>
+        <label for="ack">Ackermann</label><br><br>
+
+        <div id="num1-div">
+            <label for="num1">Input: </label>
+            <input type="number" name="num1" id="num1" min=0 required>
+        </div>
+        <div id="num2-div" style="visibility: hidden">
+            <label for="num2">Input #2: </label>
+		    <input type="number" name="num2" id="num2" min=0>
+        </div>
+		<input type="submit" value="Calculate">
+	</form>
+
+   <script>
+    var formulas = document.getElementsByName("formula")
+    for(var i = 0; i < 3; i++) {
+        formulas[i].addEventListener('change', function() { max1(); });
+    }
+    document.getElementById("num1").addEventListener('change', function() { max2(); });
+
+    function hide(id) {
+        document.querySelector('label[for="num1"]').textContent = "Input:";
+        document.getElementById(id).style.visibility = "hidden";
+        document.getElementById(id).required = false;
+    }
+    function unhide(id) {
+        document.querySelector('label[for="num1"]').textContent = "Input #1:";
+        document.getElementById(id).style.visibility = "visible";
+        document.getElementById(id).required = true;
+    }
+    function max1() {
+        var formula = document.querySelector('input[name="formula"]:checked').value;
+        var num1 = document.getElementById("num1")
+        switch (formula) {
+            case 'fibo': num1.setAttribute('max', 500000); break;
+            case 'fact': num1.setAttribute('max', 100000); break;
+            case 'ack': num1.setAttribute('max', 3);
+        }
+    }
+    function max2() {
+        var formula = document.querySelector('input[name="formula"]:checked').value;
+        if (formula == "ack") {
+            var max1 = document.getElementById("num1").value
+            var x = document.getElementById("num2")
+            var max2 = 0
+            if (max1 == 0) max2 = 25;
+            else if (max1 == 1) max2 = 10;
+            else if (max2 == 2) max2 = 8;
+            else max2 = 5;
+            x.setAttribute('max', max2);
+        }
+    }
+    </script>
+{% endblock %}

@@ -4,7 +4,7 @@ from flask import (
 
 import time
 
-from calculator.math import ackermann, factorial, fibonacci
+from calculator.functions import ackermann, factorial, fibonacci
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 

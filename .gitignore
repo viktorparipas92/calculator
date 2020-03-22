@@ -1,1 +1,6 @@
+.pytest_cache/
+calculator.pytest_cache/
 calculator/__pycache__/
+instance/
+tests/__pycache__/
+venv/

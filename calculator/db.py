@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 11 13:24:47 2019
-
-@author: A550325
-"""
-
 import sqlite3
 import click
 from flask import current_app, g

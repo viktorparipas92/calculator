@@ -6,10 +6,10 @@ import time
 
 from calculator.functions import ackermann, factorial, fibonacci
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('calculate', __name__)
 
 
-@bp.route('/calculate', methods=('GET', 'POST'))
+@bp.route('/', methods=('GET', 'POST'))
 def calculate():
     if request.method == 'POST':
         start = time.time()

@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 
-from . import db, auth
+from . import db, calculate
 
 
 # Application factory function (shall be named create_app or make_app)
@@ -29,7 +29,6 @@ def create_app(test_config=None):
     db.init_app(app)
     
     # Register blueprints
-    app.register_blueprint(auth.bp)
-    app.add_url_rule('/', endpoint='index') # no prefix, rule used instead
+    app.register_blueprint(calculate.bp)
     
     return app

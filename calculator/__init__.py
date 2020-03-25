@@ -24,11 +24,9 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    
-    # Initialize application
+
     db.init_app(app)
-    
-    # Register blueprints
+
     app.register_blueprint(calculate.bp)
     
     return app

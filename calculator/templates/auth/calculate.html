@@ -8,11 +8,11 @@
 	<form method="post">
 
         <p>Select formula:</p>
-        <input type="radio" id="fibo" name="formula" value="fibo" onclick="hide('num2-div')" required>
+        <input type="radio" id="fibo" name="formula" value="fibo" onclick="makeNum2Invisible()" required>
         <label for="fibo">Fibonacci</label><br>
-        <input type="radio" id="fact" name="formula" value="fact" onclick="hide('num2-div')" required>
+        <input type="radio" id="fact" name="formula" value="fact" onclick="makeNum2Invisible()" required>
         <label for="fact">factorial</label><br>
-        <input type="radio" id="ack" name="formula" value="ack" onclick="unhide('num2-div')" required>
+        <input type="radio" id="ack" name="formula" value="ack" onclick="makeNum2Visible()" required>
         <label for="ack">Ackermann</label><br><br>
 
         <div id="num1-div">
@@ -26,44 +26,46 @@
 		<input type="submit" value="Calculate">
 	</form>
 
-   <script>
+    <script>
     var formulas = document.getElementsByName("formula")
     for(var i = 0; i < 3; i++) {
-        formulas[i].addEventListener('change', function() { max1(); });
+        formulas[i].addEventListener('change', function() { updateMaxForNum1(); });
     }
-    document.getElementById("num1").addEventListener('change', function() { max2(); });
+    document.getElementById("num1").addEventListener('change', function() { updateMaxForNum2(); });
 
-    function hide(id) {
+    function makeNum2Invisible() {
         document.querySelector('label[for="num1"]').textContent = "Input:";
-        document.getElementById(id).style.visibility = "hidden";
-        document.getElementById(id).required = false;
+        document.getElementById('num2-div').style.visibility = "hidden";
+        document.getElementById('num2').required = false;
     }
-    function unhide(id) {
+    function makeNum2Visible() {
         document.querySelector('label[for="num1"]').textContent = "Input #1:";
-        document.getElementById(id).style.visibility = "visible";
-        document.getElementById(id).required = true;
+        document.getElementById('num2-div').style.visibility = "visible";
+        document.getElementById('num2').required = true;
     }
-    function max1() {
+    function updateMaxForNum1() {
         var formula = document.querySelector('input[name="formula"]:checked').value;
-        var num1 = document.getElementById("num1")
+        var num1 = document.getElementById("num1");
         switch (formula) {
             case 'fibo': num1.setAttribute('max', 500000); break;
             case 'fact': num1.setAttribute('max', 100000); break;
             case 'ack': num1.setAttribute('max', 3);
         }
     }
-    function max2() {
+    function updateMaxForNum2() {
         var formula = document.querySelector('input[name="formula"]:checked').value;
         if (formula == "ack") {
-            var max1 = document.getElementById("num1").value
-            var x = document.getElementById("num2")
-            var max2 = 0
-            if (max1 == 0) max2 = 25;
-            else if (max1 == 1) max2 = 10;
-            else if (max2 == 2) max2 = 8;
-            else max2 = 5;
+            var num1 = document.getElementById("num1").value;
+            var max2 = calcMax2FromNum1ForAckermann(num1);
+            var x = document.getElementById("num2");
             x.setAttribute('max', max2);
         }
+    }
+    function calcMax2FromNum1ForAckermann(num1) {
+        if (num1 == 0) return 25;
+        else if (num1 == 1) return 10;
+        else if (num1 == 2) return 8;
+        else return 5;
     }
     </script>
 {% endblock %}

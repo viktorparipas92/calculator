@@ -1,4 +1,5 @@
 
+
 # README #
 
 
@@ -13,12 +14,12 @@
 * Running locally on development server
 	* Download the repository
 	* Create a virtual environment and activate it, more information [here.](https://flask.palletsprojects.com/en/1.1.x/installation/)
-	* Inside the virtual environment run "pip install -e" to install the project, see [here.](https://flask.palletsprojects.com/en/1.1.x/tutorial/install/)
-	* Set the environment variables FLASK_APP=calculator and FLASK_ENV=development
-	* Type "python -m flask run" in the terminal
+	* Inside the virtual environment run `pip install -e .` to install the project, see [here.](https://flask.palletsprojects.com/en/1.1.x/tutorial/install/)
+	* Set the environment variables `FLASK_APP=calculator` and `FLASK_ENV=development`
+	* Type `python -m flask run` in the terminal
 	* When in doubt refer to [this](https://flask.palletsprojects.com/en/1.1.x/tutorial/) or [this](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) tutorial.
 * Dependencies are defined in setup.py (for local installation) and requirements.txt (for cloud deployment)
-* To run the tests, type "python -m pytest" in the terminal when inside the virtual environment
+* To run the tests, type `python -m pytest` in the terminal when inside the virtual environment
 * The app is deployed on Google App Engine based on [this tutorial](https://codelabs.developers.google.com/codelabs/cloud-vision-app-engine/) and is available to use [here.](https://ambient-inquiry-271918.appspot.com/) 
 
 ### Contribution guidelines ###

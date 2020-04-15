@@ -25,7 +25,7 @@
 ### Contribution guidelines ###
 
 * The tests are defined in the folder "tests", one file per every module. When adding new test cases, simply define a function with one or more assertions, pytest runs them automatically.
- ### Known issues or bugs ###
+### Known issues or bugs ###
 
 * Ackermann function works only for small inputs
 * Large outputs should be wrapped or displayed in a neater format
